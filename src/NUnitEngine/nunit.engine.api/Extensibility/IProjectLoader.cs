@@ -23,7 +23,7 @@
 
 using System;
 
-namespace NUnit.Engine
+namespace NUnit.Engine.Extensibility
 {
     /// <summary>
     /// The IProjectLoader interface is implemented by any class

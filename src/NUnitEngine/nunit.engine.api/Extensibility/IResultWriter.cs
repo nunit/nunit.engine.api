@@ -21,28 +21,35 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
+using System.IO;
 using System.Xml;
-using NUnit.Engine.Extensibility;
 
-namespace NUnit.Engine
+namespace NUnit.Engine.Extensibility
 {
     /// <summary>
-    /// IResultWriterService provides result writers for a specified
-    /// well-known format.
+    /// Common interface for objects that process and write out test results
     /// </summary>
-    public interface IResultService
+    public interface IResultWriter
     {
         /// <summary>
-        /// Gets an array of the available formats
+        /// Checks if the output path is writable. If the output is not
+        /// writable, this method should throw an exception.
         /// </summary>
-        string[] Formats { get; }
+        /// <param name="outputPath"></param>
+        void CheckWritability(string outputPath);
 
         /// <summary>
-        /// Gets a ResultWriter for a given format and set of arguments.
+        /// Writes result to the specified output path.
         /// </summary>
-        /// <param name="format">The name of the format to be used</param>
-        /// <param name="args">A set of arguments to be used in constructing the writer or null if non arguments are needed</param>
-        /// <returns>An IResultWriter</returns>
-        IResultWriter GetResultWriter(string format, object[] args);
+        /// <param name="resultNode">XmlNode for the result</param>
+        /// <param name="outputPath">Path to which it should be written</param>
+        void WriteResultFile(XmlNode resultNode, string outputPath);
+
+        /// <summary>
+        /// Writes result to a TextWriter.
+        /// </summary>
+        /// <param name="resultNode">XmlNode for the result</param>
+        /// <param name="writer">TextWriter to which it should be written</param>
+        void WriteResultFile(XmlNode resultNode, TextWriter writer);
     }
 }
