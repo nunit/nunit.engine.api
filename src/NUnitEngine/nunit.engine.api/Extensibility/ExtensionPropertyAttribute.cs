@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Copyright (c) 2009-2014 Charlie Poole
+// Copyright (c) 2015 Charlie Poole
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -22,33 +22,34 @@
 // ***********************************************************************
 
 using System;
-using System.Reflection;
 
 namespace NUnit.Engine.Extensibility
 {
     /// <summary>
-    /// Interface implemented by a Type that knows how to create a driver for a test assembly.
+    /// The ExtensionPropertyAttribute is used to specify named properties for an extension.
     /// </summary>
-#if NUNIT_ENGINE
-    [TypeExtensionPoint(
-        Description = "Supplies a driver to run tests that use a specific test framework.")]
-#endif
-    public interface IDriverFactory
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple=true, Inherited=false)]
+    public class ExtensionPropertyAttribute : Attribute
     {
         /// <summary>
-        /// Gets a flag indicating whether a given assembly name and version
-        /// represent a test framework supported by this factory.
+        /// Construct an ExtensionPropertyAttribute
         /// </summary>
-        bool IsSupportedTestFramework(string assemblyName, Version version);
+        /// <param name="name">The name of the property</param>
+        /// <param name="value">The property value</param>
+        public ExtensionPropertyAttribute(string name, string value)
+        {
+            Name = name;
+            Value = value;
+        }
 
         /// <summary>
-        /// Gets a driver for a given test assembly and a framework
-        /// which the assembly is already known to reference.
+        /// The name of the property.
         /// </summary>
-        /// <param name="domain">The domain in which the assembly will be loaded</param>
-        /// <param name="assemblyName">The Name of the test framework reference</param>
-        /// <param name="version">The version of the test framework reference</param>
-        /// <returns></returns>
-        IFrameworkDriver GetDriver(AppDomain domain, string assemblyName, Version version);
+        public string Name { get; private set; }
+
+        /// <summary>
+        /// The property value
+        /// </summary>
+        public string Value { get; private set; }
     }
 }
