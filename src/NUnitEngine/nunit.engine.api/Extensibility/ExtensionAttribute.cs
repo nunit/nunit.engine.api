@@ -33,6 +33,14 @@ namespace NUnit.Engine.Extensibility
     public class ExtensionAttribute : Attribute
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="NUnit.Engine.Extensibility.ExtensionAttribute"/> class.
+        /// </summary>
+        public ExtensionAttribute()
+        {
+            Enabled = true;
+        }
+
+        /// <summary>
         /// A unique string identifying the ExtensionPoint for which this Extension is 
         /// intended. This is an optional field provided NUnit is able to deduce the
         /// ExtensionPoint from the Type of the extension class.
@@ -43,5 +51,11 @@ namespace NUnit.Engine.Extensibility
         /// An optional description of what the extension does.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Flag indicating whether the extension is enabled.
+        /// </summary>
+        /// <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        public bool Enabled { get; set; }
     }
 }
