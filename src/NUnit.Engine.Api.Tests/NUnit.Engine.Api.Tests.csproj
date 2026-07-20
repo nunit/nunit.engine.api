@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net462;net8.0</TargetFrameworks>
+        <Nullable>disable</Nullable>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\NUnit.Engine.Api\NUnit.Engine.Api.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NUnit" Version="$(NUnitFrameworkVersion)" />
+		<PackageReference Include="NUnitLite" Version="$(NUnitFrameworkVersion)" />
+	</ItemGroup>
+
+</Project>

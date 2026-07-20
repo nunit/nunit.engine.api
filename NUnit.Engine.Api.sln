@@ -1,0 +1,60 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.7.11919.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49D441DF-39FD-4F4D-AECA-86CF8EFE23AF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		BREAKING_CHANGES.md = BREAKING_CHANGES.md
+		build.cake = build.cake
+		build.ps1 = build.ps1
+		build.sh = build.sh
+		BUILDING.md = BUILDING.md
+		CHANGES.txt = CHANGES.txt
+		CONTRIBUTING.md = CONTRIBUTING.md
+		src\Directory.Build.props = src\Directory.Build.props
+		GitReleaseManager.yaml = GitReleaseManager.yaml
+		global.json = global.json
+		KnownExtensions.cake = KnownExtensions.cake
+		LICENSE.txt = LICENSE.txt
+		MixedTests.nunit = MixedTests.nunit
+		NetCoreTests.nunit = NetCoreTests.nunit
+		NOTICES.txt = NOTICES.txt
+		NuGet.config = NuGet.config
+		src\Nullable.props = src\Nullable.props
+		nunit.ico = nunit.ico
+		nunit_256.png = nunit_256.png
+		package-tests.cake = package-tests.cake
+		README.md = README.md
+		src\StyleCop.Analyzers.globalconfig = src\StyleCop.Analyzers.globalconfig
+		VERSIONING.md = VERSIONING.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnit.Engine.Api", "src\NUnit.Engine.Api\NUnit.Engine.Api.csproj", "{03591F56-2C54-C542-82EE-433F1BBFBF89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnit.Engine.Api.Tests", "src\NUnit.Engine.Api.Tests\NUnit.Engine.Api.Tests.csproj", "{822EA213-AAF6-74A4-9763-DB342922F94D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03591F56-2C54-C542-82EE-433F1BBFBF89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03591F56-2C54-C542-82EE-433F1BBFBF89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03591F56-2C54-C542-82EE-433F1BBFBF89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03591F56-2C54-C542-82EE-433F1BBFBF89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{822EA213-AAF6-74A4-9763-DB342922F94D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{822EA213-AAF6-74A4-9763-DB342922F94D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{822EA213-AAF6-74A4-9763-DB342922F94D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{822EA213-AAF6-74A4-9763-DB342922F94D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F85A17B5-1076-4A58-84C5-07DC62F87F12}
+	EndGlobalSection
+EndGlobal
