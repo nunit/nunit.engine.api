@@ -4,7 +4,6 @@
 //#load ../NUnit.Cake.Recipe/src/NUnit.Cake.Recipe/content/*.cake
 
 // Load additional cake files
-//#load package-tests.cake
 #load KnownExtensions.cake
 
 // Initialize BuildSettings
@@ -18,19 +17,6 @@ BuildSettings.Initialize(
 //////////////////////////////////////////////////////////////////////
 // INDIVIDUAL PACKAGE DEFINITIONS
 //////////////////////////////////////////////////////////////////////
-
-//PackageDefinition NUnitExtensibilityApiPackage = new NuGetPackage(
-//    id: "NUnit.Extensibility.Api",
-//    source: BuildSettings.SourceDirectory + "NUnitCommon/nunit.extensibility.api/nunit.extensibility.api.csproj",
-//    checks: new PackageCheck[] {
-//        HasFile("LICENSE.txt"),
-//        HasDirectory("lib/net462").WithFile("nunit.extensibility.api.dll"),
-//        HasDirectory("lib/netstandard2.0").WithFile("nunit.extensibility.api.dll")
-//    },
-//    symbols: new PackageCheck[] {
-//        HasDirectory("lib/net462").WithFile("nunit.extensibility.api.pdb"),
-//        HasDirectory("lib/netstandard2.0").WithFile("nunit.extensibility.api.pdb")
-//    });
 
 BuildSettings.Packages.Add(new NuGetPackage(
     id: "NUnit.Engine.Api",

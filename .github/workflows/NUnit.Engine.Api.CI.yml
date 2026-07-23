@@ -1,0 +1,72 @@
+name: NUnit.Engine.Api.CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+  checks: write
+
+env:
+  DOTNET_NOLOGO: true                     # Disable the .NET logo
+  DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
+
+jobs:
+  build-windows:
+    name: Continuous Integration Windows Build
+    runs-on: windows-latest
+
+    steps:
+    - name: ⤵️ Checkout Source
+      uses: actions/checkout@v7
+      with:
+        fetch-depth: 0
+
+    - name: 🛠️ Setup .NET
+      uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+        
+    - name: 🛠️ Install dotnet tools
+      run: dotnet tool restore
+
+    - name: Check if we should Publish
+      run: |
+        $OUTPUT = "$(git describe --tags --long)"
+        echo "$OUTPUT"
+        git describe --tags --long | readarray -d "-" -t array
+        echo "$array"
+
+    - name: 🔨 Build, Test and Package
+      run: dotnet cake --target=Test --target=Package --configuration=Release #--verbosity=diagnostic
+
+    - name: 💾 Upload build artifacts
+      uses: actions/upload-artifact@v7
+      with:
+        name: Packages
+        path: packages
+
+# Need to set work directory and give testresult files differing names
+#    - name: 💾 Upload test results
+#      uses: actions/upload-artifact@v7
+#      with:
+#        name: TestResults (Windows)
+#        path: TestResults
+#      if: ${{ always() }}
+
+# Need to implement test-reporter in NUnit
+#    - name: 🧪 Test Report
+#      if: ${{ always() }}
+#      uses: ./.github/actions/test-reporter
+#      with:
+#        name: "Tests (${{ runner.os }})"
+#        path: TestResults/**/*.trx
+#        fail-on-error: false
+#        token: ${{ secrets.GITHUB_TOKEN }}
