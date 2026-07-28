@@ -37,32 +37,16 @@ jobs:
     - name: 🛠️ Install dotnet tools
       run: dotnet tool restore
 
-    - name: 🔨 Build, Test and Package
-      run: dotnet cake --target=Test --target=Package --configuration=Release #--verbosity=diagnostic
+    - name: 🔨 Build, Test, Package and Publish (Cake script decides)
+      run: dotnet cake --target=ContinuousIntegration --target=Package --configuration=Release #--verbosity=diagnostic
 
-    # Upload packages before publishing in case of later failures
-    - name: 💾 Upload build artifacts
+    # Upload packages
+    - name: 💾 Upload Packages
+      if: always()
       uses: actions/upload-artifact@v7
       with:
         name: Packages
         path: packages
-
-    - name: Publish only if current commit is labeled
-      run: |
-        $tag = "$(git describe --tags --long)"
-        $label = $tag.Substring(0,$tag.LastIndexOf("-", $tag.LastIndexOf("-")-1))
-        echo "Most recent label: $label"
-        $taginfo = $tag.Split("-")
-        $height = $taginfo[-2]
-        echo "Number of commits since label: $height"
-        if ($height -eq "0")
-        {
-          dotnet cake --target=Publish --configuration=Release --nopush
-        }
-        else
-        {
-          echo "Skipping Publish Step"
-        }
 
 # Need to set work directory and give testresult files differing names
 #    - name: 💾 Upload test results

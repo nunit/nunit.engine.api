@@ -63,7 +63,7 @@ namespace NUnit.Engine
         void RequestStop();
 
         /// <summary>
-        /// Force the current test run to stop, killing threads or processes if necessary.
+        /// Force the test run to stop, killing any active agent processes if necessary.
         /// If no tests are running, the call is ignored.
         /// </summary>
         void ForcedStop();
