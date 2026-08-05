@@ -12,6 +12,7 @@ BuildSettings.Initialize(
     title: "NUnit Engine API",
     githubRepository: "NUnit.Engine.Api",
     solutionFile: "NUnit.Engine.Api.sln",
+    nugetVerbosity: NuGetVerbosity.Detailed,
     buildWithMSBuild: true);
 
 //////////////////////////////////////////////////////////////////////
