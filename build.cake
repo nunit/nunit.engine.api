@@ -1,19 +1,15 @@
 // Load the recipe
-#load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.4.2
+#load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.4.3
 // Comment out above line and uncomment below for local tests of recipe changes
 //#load ../NUnit.Cake.Recipe/src/NUnit.Cake.Recipe/content/*.cake
-
-// Load additional cake files
-#load KnownExtensions.cake
 
 // Initialize BuildSettings
 BuildSettings.Initialize(
     Context,
     title: "NUnit Engine API",
     githubRepository: "NUnit.Engine.Api",
-    solutionFile: "NUnit.Engine.Api.sln",
-    nugetVerbosity: NuGetVerbosity.Detailed,
-    buildWithMSBuild: true);
+    solutionFile: "NUnit.Engine.Api.slnx",
+    buildWithMSBuild: false);
 
 //////////////////////////////////////////////////////////////////////
 // INDIVIDUAL PACKAGE DEFINITIONS

@@ -1,3 +1,37 @@
 <Solution>
-  <Project Path="src/NUnitEngine/nunit.engine.api/nunit.engine.api.csproj" />
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="BREAKING_CHANGES.md" />
+    <File Path="build.cake" />
+    <File Path="build.cmd" />
+    <File Path="build.ps1" />
+    <File Path="build.sh" />
+    <File Path="BUILDING.md" />
+    <File Path="CHANGES.txt" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="GitReleaseManager.yaml" />
+    <File Path="global.json" />
+    <File Path="KnownExtensions.cake" />
+    <File Path="LICENSE.txt" />
+    <File Path="MixedTests.nunit" />
+    <File Path="NetCoreTests.nunit" />
+    <File Path="NOTICES.txt" />
+    <File Path="NuGet.config" />
+    <File Path="nunit.ico" />
+    <File Path="nunit_256.png" />
+    <File Path="package-tests.cake" />
+    <File Path="README.md" />
+    <File Path="src/Directory.Build.props" />
+    <File Path="src/Nullable.props" />
+    <File Path="src/StyleCop.Analyzers.globalconfig" />
+    <File Path="VERSIONING.md" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/" />
+  <Folder Name="/Solution Items/.github/Workflows/">
+    <File Path=".github/workflows/NUnit.Engine.Api.CI.yml" />
+  </Folder>
+  <Project Path="src/NUnit.Engine.Api.Tests/NUnit.Engine.Api.Tests.csproj" />
+  <Project Path="src/NUnit.Engine.Api/NUnit.Engine.Api.csproj" />
 </Solution>
