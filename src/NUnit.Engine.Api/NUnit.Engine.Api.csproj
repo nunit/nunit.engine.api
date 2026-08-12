@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit.Extensibility.Api" Version="$(NUnitExtensibilityVersion)" />
+    <PackageReference Include="NUnit.Extensibility.Api" />
   </ItemGroup>
 
 </Project>
