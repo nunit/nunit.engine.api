@@ -38,6 +38,13 @@ Task("BuildPackages")
             package.BuildPackage();
     });
 
+// Temporary task redefinitions for testing changes to the recipe.
+Redefine(BuildTasks.RestoreTask)
+    .Does(() =>
+    {
+        DotNetRestore();
+    });
+
 //////////////////////////////////////////////////////////////////////
 // CONSOLE PACKAGE TEST RUNNER
 //////////////////////////////////////////////////////////////////////
