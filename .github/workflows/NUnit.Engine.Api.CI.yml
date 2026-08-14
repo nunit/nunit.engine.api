@@ -45,8 +45,8 @@ jobs:
 
     # For reasons I don't understand, the Cake script doesn't work in a workflow
     # unless they are restored before the script runs, which this command does.  
-    - name: 🛠️ List Packages
-      run: dotnet list package --include-transitive
+    #- name: 🛠️ List Packages
+    #  run: dotnet list package --include-transitive
 
     - name: 🔨 Build, Test, Package and Publish (Cake script decides)
       #run: dotnet cake --target=ContinuousIntegration --configuration=Release #--verbosity=diagnostic
