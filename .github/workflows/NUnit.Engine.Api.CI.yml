@@ -49,12 +49,7 @@ jobs:
     #  run: dotnet list package --include-transitive
 
     - name: 🔨 Build, Test, Package and Publish (Cake script decides)
-      #run: dotnet cake --target=ContinuousIntegration --configuration=Release #--verbosity=diagnostic
-      uses: cake-build/cake-action@v3
-      with:
-        target: ContinuousIntegration
-        configuration: Release
-        #verbosity: diagnostic
+      run: dotnet cake --target=ContinuousIntegration --configuration=Release --verbosity=diagnostic
 
     # Upload packages
     - name: 💾 Upload Packages
