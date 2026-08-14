@@ -8,8 +8,7 @@ BuildSettings.Initialize(
     Context,
     title: "NUnit Engine API",
     githubRepository: "NUnit.Engine.Api",
-    solutionFile: "NUnit.Engine.Api.slnx",
-    buildWithMSBuild: false);
+    solutionFile: "NUnit.Engine.Api.slnx");
 
 //////////////////////////////////////////////////////////////////////
 // INDIVIDUAL PACKAGE DEFINITIONS
