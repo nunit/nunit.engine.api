@@ -21,7 +21,7 @@ BuildSettings.Packages.Add(new NuGetPackage(
         HasFile("LICENSE.txt"),
         HasDirectory("lib/net462").WithFile("nunit.engine.api.dll"),
         HasDirectory("lib/netstandard2.0").WithFile("nunit.engine.api.dll"),
-        HasDependency("NUnit.Extensibility.Api", "4.0.0-beta.3")
+        HasDependency("NUnit.Extensibility.Api", "4.0.0-beta.4")
     },
     symbols: new PackageCheck[] {
         HasDirectory("lib/net462").WithFile("nunit.engine.api.pdb"),
