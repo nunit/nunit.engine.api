@@ -1,5 +1,5 @@
 // Load the recipe
-#load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.4.8
+#load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.4.11
 // Comment out above line and uncomment below for local tests of recipe changes
 //#load ../NUnit.Cake.Recipe/recipe/*.cake
 
@@ -21,7 +21,7 @@ BuildSettings.Packages.Add(new NuGetPackage(
         HasFile("LICENSE.txt"),
         HasDirectory("lib/net462").WithFile("nunit.engine.api.dll"),
         HasDirectory("lib/netstandard2.0").WithFile("nunit.engine.api.dll"),
-        HasDependency("NUnit.Extensibility.Api", "4.0.0-beta.4")
+        HasDependency("NUnit.Extensibility.Api")
     },
     symbols: new PackageCheck[] {
         HasDirectory("lib/net462").WithFile("nunit.engine.api.pdb"),
