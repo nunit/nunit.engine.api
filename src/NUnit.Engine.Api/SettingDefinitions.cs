@@ -170,30 +170,11 @@ namespace NUnit.Common
         /// </summary>
         public static SettingDefinition<int> TestRunTimeout { get; } = new SettingDefinition<int>(nameof(TestRunTimeout), 0);
 
-        ///// <summary>
-        ///// Flag (bool) indicating whether to pause execution of tests to allow
-        ///// the user to attach a debugger.
-        ///// </summary>
-        //public static SettingDefinition<bool> PauseBeforeRun { get; } = new(nameof(PauseBeforeRun));
-
-        ///// <summary>
-        ///// The InternalTraceLevel for this run. Values are: "Default",
-        ///// "Off", "Error", "Warning", "Info", "Debug", "Verbose".
-        ///// Default is "Off". "Debug" and "Verbose" are synonyms.
-        ///// </summary>
-        //public static SettingDefinition<string> InternalTraceLevel { get; } = new(nameof(InternalTraceLevel));
-
         /// <summary>
         /// The PrincipalPolicy to set on the test application domain. Values are:
         /// "UnauthenticatedPrincipal", "NoPrincipal" and "WindowsPrincipal".
         /// </summary>
         public static SettingDefinition<string> PrincipalPolicy { get; } = new(nameof(PrincipalPolicy), string.Empty);
-
-        ///// <summary>
-        ///// Full path of the directory to be used for work and result files.
-        ///// This path is provided to tests by the framework TestContext.
-        ///// </summary>
-        //public static SettingDefinition<string> WorkDirectory { get; } = new(nameof(WorkDirectory));
 
         /// <summary>
         /// Set to true to list statistics for dependency resolution under .NET Core.
@@ -218,9 +199,9 @@ namespace NUnit.Common
         /// <summary>
         /// The InternalTraceLevel for this run. Values are: "Default",
         /// "Off", "Error", "Warning", "Info", "Debug", "Verbose".
-        /// Default is "Off". "Debug" and "Verbose" are synonyms.
+        /// Default is "Warning". "Debug" and "Verbose" are synonyms.
         /// </summary>
-        public static SettingDefinition<string> InternalTraceLevel { get; } = new(nameof(InternalTraceLevel), "Off");
+        public static SettingDefinition<string> InternalTraceLevel { get; } = new(nameof(InternalTraceLevel), "Warning");
 
         /// <summary>
         /// Full path of the directory to be used for work and result files.
