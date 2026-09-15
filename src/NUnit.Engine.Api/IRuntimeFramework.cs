@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License - see LICENSE.txt
 
-using System;
+using System.Runtime.Versioning;
 
 namespace NUnit.Engine
 {
@@ -10,9 +10,9 @@ namespace NUnit.Engine
     public interface IRuntimeFramework
     {
         /// <summary>
-        /// Gets the inique Id for this runtime, such as "net-4.5"
+        /// Gets a Target Framework Moniker (TFM) string representing the framework, such as "net45"
         /// </summary>
-        string Id { get;  }
+        string TFM { get; }
 
         /// <summary>
         /// Gets the display name of the framework, such as ".NET 4.5"
@@ -20,16 +20,8 @@ namespace NUnit.Engine
         string DisplayName { get; }
 
         /// <summary>
-        /// Gets the framework version: usually contains two components, Major
-        /// and Minor, which match the corresponding CLR components, but not always.
+        /// Gets a FrameworkName object representing the framework, such as .NETFramework,Version=v4.5
         /// </summary>
-        Version FrameworkVersion { get; }
-
-        /// <summary>
-        /// Gets a string representing the particular profile installed,
-        /// or null if there is no profile. Currently. the only defined
-        /// values are Full and Client.
-        /// </summary>
-        string? Profile { get; }
+        FrameworkName FrameworkName { get; }
     }
 }
