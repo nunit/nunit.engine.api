@@ -137,7 +137,7 @@ namespace NUnit.Engine
 
             foreach (var setting in Settings)
                 if (!subPackage.Settings.HasSetting(setting.Name))
-                    subPackage.AddSetting(setting);
+                    subPackage.AddSetting(setting, true);
         }
 
         /// <summary>
@@ -154,9 +154,10 @@ namespace NUnit.Engine
         }
 
         /// <summary>
-        /// Add a setting to a package and all of its subpackages.
+        /// Add a setting to a package and optionally to all of its subpackages.
         /// </summary>
         /// <param name="setting">The setting to be added</param>
+        /// <param name="recursive">A flag indicating whether the setting should be added to all subpackages recursively</param>
         /// <remarks>
         /// Once a package is created, subpackages may have been created
         /// as well. If you add a setting directly to the Settings dictionary
@@ -164,18 +165,22 @@ namespace NUnit.Engine
         /// used when the settings are intended to be reflected to all the
         /// subpackages under the package.
         /// </remarks>
-        public void AddSetting(PackageSetting setting)
+        public void AddSetting(PackageSetting setting, bool recursive)
         {
             Settings.Add(setting);
-            foreach (var subPackage in SubPackages)
-                subPackage.AddSetting(setting);
+            if (recursive)
+            {
+                foreach (var subPackage in SubPackages)
+                    subPackage.AddSetting(setting, true);
+            }
         }
 
         /// <summary>
-        /// Create and add a custom string setting to a package and all of its subpackages.
+        /// Create and add a custom string setting to a package and optionally to all of its subpackages.
         /// </summary>
         /// <param name="name">The name of the setting.</param>
         /// <param name="value">The corresponding value to set.</param>
+        /// <param name="recursive">A flag indicating whether the setting should be added to all subpackages recursively</param>
         /// <remarks>
         /// Once a package is created, subpackages may have been created
         /// as well. If you add a setting directly to the Settings dictionary
@@ -183,16 +188,17 @@ namespace NUnit.Engine
         /// used when the settings are intended to be reflected to all the
         /// subpackages under the package.
         /// </remarks>
-        public void AddSetting(string name, string value)
+        public void AddSetting(string name, string value, bool recursive)
         {
-            AddSetting(new PackageSetting<string>(name, value));
+            AddSetting(new PackageSetting<string>(name, value), recursive);
         }
 
         /// <summary>
-        /// Create and add a custom boolean setting to a package and all of its subpackages.
+        /// Create and add a custom boolean setting to a package and optionally to all of its subpackages.
         /// </summary>
         /// <param name="name">The name of the setting.</param>
         /// <param name="value">The corresponding value to set.</param>
+        /// <param name="recursive">A flag indicating whether the setting should be added to all subpackages recursively</param>
         /// <remarks>
         /// Once a package is created, subpackages may have been created
         /// as well. If you add a setting directly to the Settings dictionary
@@ -200,16 +206,17 @@ namespace NUnit.Engine
         /// used when the settings are intended to be reflected to all the
         /// subpackages under the package.
         /// </remarks>
-        public void AddSetting(string name, bool value)
+        public void AddSetting(string name, bool value, bool recursive)
         {
-            AddSetting(new PackageSetting<bool>(name, value));
+            AddSetting(new PackageSetting<bool>(name, value), recursive);
         }
 
         /// <summary>
-        /// Create and add a custom int setting to a package and all of its subpackages.
+        /// Create and add a custom int setting to a package and optionally to all of its subpackages.
         /// </summary>
         /// <param name="name">The name of the setting.</param>
         /// <param name="value">The corresponding value to set.</param>
+        /// <param name="recursive">A flag indicating whether the setting should be added to all subpackages recursively</param>
         /// <remarks>
         /// Once a package is created, subpackages may have been created
         /// as well. If you add a setting directly to the Settings dictionary
@@ -217,9 +224,82 @@ namespace NUnit.Engine
         /// used when the settings are intended to be reflected to all the
         /// subpackages under the package.
         /// </remarks>
-        public void AddSetting(string name, int value)
+        public void AddSetting(string name, int value, bool recursive)
         {
-            AddSetting(new PackageSetting<int>(name, value));
+            AddSetting(new PackageSetting<int>(name, value), recursive);
+        }
+
+        /// <summary>
+        /// Apply a setting to a package and optionally to all of its subpackages.
+        /// </summary>
+        /// <param name="setting">The setting to be applied</param>
+        /// <param name="recursive">A flag indicating whether the setting should be applied to all subpackages recursively</param>
+        public void ApplySetting(PackageSetting setting, bool recursive)
+        {
+            Settings.Set(setting);
+            if (recursive)
+            {
+                foreach (var subPackage in SubPackages)
+                    subPackage.ApplySetting(setting, true);
+            }
+        }
+
+        /// <summary>
+        /// Apply a custom string setting to a package and optionally to all of its subpackages.
+        /// </summary>
+        /// <param name="name">The name of the setting.</param>
+        /// <param name="value">The corresponding value to set.</param>
+        /// <param name="recursive">A flag indicating whether the setting should be added to all subpackages recursively</param>
+        public void ApplySetting(string name, string value, bool recursive)
+        {
+            ApplySetting(new PackageSetting<string>(name, value), recursive);
+        }
+
+        /// <summary>
+        /// Create and add a custom boolean setting to a package and optionally to all of its subpackages.
+        /// </summary>
+        /// <param name="name">The name of the setting.</param>
+        /// <param name="value">The corresponding value to set.</param>
+        /// <param name="recursive">A flag indicating whether the setting should be added to all subpackages recursively</param>
+        public void ApplySetting(string name, bool value, bool recursive)
+        {
+            ApplySetting(new PackageSetting<bool>(name, value), recursive);
+        }
+
+        /// <summary>
+        /// Create and add a custom int setting to a package and optionally to all of its subpackages.
+        /// </summary>
+        /// <param name="name">The name of the setting.</param>
+        /// <param name="value">The corresponding value to set.</param>
+        /// <param name="recursive">A flag indicating whether the setting should be added to all subpackages recursively</param>
+        public void ApplySetting(string name, int value, bool recursive)
+        {
+            ApplySetting(new PackageSetting<int>(name, value), recursive);
+        }
+
+        /// <summary>
+        /// Remove a setting from this package and, optionally, from all subpackages.
+        /// </summary>
+        /// <param name="setting">The setting to remove.</param>
+        /// <param name="recursive">If true, remove the setting recursively from all subpackages.</param>
+        public void RemoveSetting(PackageSetting setting, bool recursive)
+        {
+            RemoveSetting(setting.Name, recursive);
+        }
+
+        /// <summary>
+        /// Remove a setting from this package and, optionally, from all subpackages.
+        /// </summary>
+        /// <param name="name">The name of the setting to remove.</param>
+        /// <param name="recursive">If true, remove the setting recursively from all subpackages.</param>
+        public void RemoveSetting(string name, bool recursive)
+        {
+            Settings.Remove(name);
+            if (recursive)
+            {
+                foreach (var subPackage in SubPackages)
+                    subPackage.RemoveSetting(name, true);
+            }
         }
 
         /// <summary>
