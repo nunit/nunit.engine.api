@@ -282,6 +282,16 @@ namespace NUnit.Engine
         /// </summary>
         /// <param name="setting">The setting to remove.</param>
         /// <param name="recursive">If true, remove the setting recursively from all subpackages.</param>
+        public void RemoveSetting(SettingDefinition setting, bool recursive)
+        {
+            RemoveSetting(setting.Name, recursive);
+        }
+
+        /// <summary>
+        /// Remove a setting from this package and, optionally, from all subpackages.
+        /// </summary>
+        /// <param name="setting">The setting to remove.</param>
+        /// <param name="recursive">If true, remove the setting recursively from all subpackages.</param>
         public void RemoveSetting(PackageSetting setting, bool recursive)
         {
             RemoveSetting(setting.Name, recursive);
