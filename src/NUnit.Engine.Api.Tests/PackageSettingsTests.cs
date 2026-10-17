@@ -133,6 +133,16 @@ namespace NUnit.Engine.Api
         }
 
         [Test]
+        public void CanRemoveSettingUsingPackageSetting()
+        {
+            var setting = SettingDefinitions.MaxAgents.WithValue(20);
+            _settings.Add(setting);
+            Assert.That(_settings.HasSetting("MaxAgents"));
+            _settings.Remove(setting);
+            Assert.That(_settings.HasSetting("MaxAgents"), Is.False);
+        }
+
+        [Test]
         public void CanRemoveSettingUsingName()
         {
             var setting = SettingDefinitions.MaxAgents.WithValue(20);

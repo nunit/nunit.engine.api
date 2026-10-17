@@ -65,7 +65,7 @@ namespace NUnit.Engine
         /// Adds a setting to the list directly.
         /// </summary>
         /// <param name="setting">A PackageSetting instance</param>
-        internal void Add(PackageSetting setting) => _settings.Add(setting.Name, setting);
+        public void Add(PackageSetting setting) => _settings.Add(setting.Name, setting);
 
         /// <summary>
         /// Creates and adds a setting to the list, specified by the name and a string value.
@@ -73,7 +73,7 @@ namespace NUnit.Engine
         /// </summary>
         /// <param name="name">The name of the setting.</param>
         /// <param name="value">The corresponding value to set.</param>
-        internal void Add(string name, string value)
+        public void Add(string name, string value)
         {
             var definition = SettingDefinitions.Lookup(name);
 
@@ -90,7 +90,7 @@ namespace NUnit.Engine
         /// </summary>
         /// <param name="name">The name of the setting.</param>
         /// <param name="value">The corresponding value to set.</param>
-        internal void Add(string name, bool value)
+        public void Add(string name, bool value)
         {
             var definition = SettingDefinitions.Lookup(name);
 
@@ -106,7 +106,7 @@ namespace NUnit.Engine
         /// </summary>
         /// <param name="name">The name of the setting.</param>
         /// <param name="value">The corresponding value to set.</param>
-        internal void Add(string name, int value)
+        public void Add(string name, int value)
         {
             var definition = SettingDefinitions.Lookup(name);
 
@@ -120,14 +120,14 @@ namespace NUnit.Engine
         /// <summary>
         /// Adds or replaces a setting to the list.
         /// </summary>
-        internal void Set(PackageSetting setting) => _settings[setting.Name] = setting;
+        public void Set(PackageSetting setting) => _settings[setting.Name] = setting;
 
         /// <summary>
         /// Adds or replaces a setting to the list.
         /// </summary>
         /// <param name="name">The name of the setting.</param>
         /// <param name="value">The corresponding value to set.</param>
-        internal void Set<T>(string name, T value)
+        public void Set<T>(string name, T value)
             where T : notnull
         {
             Set(new PackageSetting<T>(name, value));
@@ -137,7 +137,26 @@ namespace NUnit.Engine
         /// Remove a setting
         /// </summary>
         /// <param name="setting">The setting to remove</param>
-        internal void Remove(SettingDefinition setting)
+        public void Remove<T>(SettingDefinition<T> setting)
+            where T : notnull
+        {
+            _settings.Remove(setting.Name);
+        }
+
+        /// <summary>
+        /// Remove a setting
+        /// </summary>
+        /// <param name="setting">The setting to remove</param>
+        public void Remove(SettingDefinition setting)
+        {
+            _settings.Remove(setting.Name);
+        }
+
+        /// <summary>
+        /// Remove a setting
+        /// </summary>
+        /// <param name="setting">The setting to remove</param>
+        public void Remove(PackageSetting setting)
         {
             _settings.Remove(setting.Name);
         }
@@ -146,7 +165,7 @@ namespace NUnit.Engine
         /// Remove a setting
         /// </summary>
         /// <param name="settingName">The name of the setting to remove</param>
-        internal void Remove(string settingName)
+        public void Remove(string settingName)
         {
             _settings.Remove(settingName);
         }
