@@ -12,8 +12,9 @@ namespace NUnit.Engine.Services
     /// <para>
     /// This contract applies to in-process, local-process and remote agents. It does
     /// not require the caller to own a process or perform a particular registration
-    /// handshake. The provider is responsible for the implementation-specific setup
-    /// and lifetime of the agents it supplies.
+    /// handshake. The caller does not need to know how a provider obtains its agents
+    /// or what resources it manages. The provider is responsible for its agents
+    /// and their resources.
     /// </para>
     /// <para>
     /// The caller is responsible for returning each acquired agent through the same
@@ -32,7 +33,7 @@ namespace NUnit.Engine.Services
         /// <remarks>
         /// <para>
         /// This query does not return an agent or make the caller responsible for
-        /// releasing one. It does not guarantee that no extension or agent implementation
+        /// returning one. It does not guarantee that no extension or agent implementation
         /// is loaded or instantiated internally. Depending on the information supplied
         /// by an extension, the provider may use declared metadata or instantiate the
         /// extension to determine its capabilities. Other implementations may need to
@@ -59,14 +60,13 @@ namespace NUnit.Engine.Services
         /// <remarks>
         /// <para>
         /// Successful acquisition makes the caller responsible for returning this exact
-        /// agent reference using <see cref="ReleaseAgent"/>. The provider retains responsibility
+        /// agent reference using <see cref="ReturnAgent"/>. The provider retains responsibility
         /// for its underlying implementation and resources; acquiring an agent does not
         /// imply that the caller owns its process, transport or deployment.
         /// </para>
         /// <para>
-        /// If acquisition throws, the caller has no returned agent to release. The provider
-        /// remains responsible for resources created during the failed attempt and for
-        /// reconciling an outcome that cannot yet be confirmed.
+        /// If acquisition throws, the provider remains responsible for resources created
+        /// during the failed attempt.
         /// </para>
         /// </remarks>
         ITestAgent GetAgent(TestPackage package);
@@ -74,30 +74,31 @@ namespace NUnit.Engine.Services
         /// <summary>
         /// Returns a previously acquired test agent to the provider that supplied it.
         /// </summary>
-        /// <param name="agent">An agent previously provided by a call to GetAgent.</param>
+        /// <param name="agent">An agent previously acquired by a call to <see cref="GetAgent"/>.</param>
         /// <exception cref="InvalidOperationException">
-        /// The reference was not acquired from this provider or was previously released.
+        /// The reference was not acquired from this provider or was previously returned.
         /// </exception>
         /// <remarks>
         /// <para>
         /// Return the exact reference through the same provider that supplied it so that
-        /// ownership bookkeeping remains consistent. The provider decides whether to stop
-        /// the agent, retain it for reuse or return it to another source. After successful
-        /// release, the caller must not continue using the reference.
+        /// ownership bookkeeping remains consistent. After successfully returning the
+        /// agent, the caller must not continue using the reference. The provider remains
+        /// responsible for its agents and their resources.
         /// </para>
         /// <para>
         /// A stop request, a closed connection or disposal of a runner is not confirmation
-        /// of release. If release throws, preserve the association with the originating
-        /// provider until it can reconcile the outcome. This does not guarantee that an
-        /// unconfirmed operation can be repeated without reconciliation.
+        /// that the agent was returned. If returning an agent fails, preserve its association
+        /// with the originating provider. Further attempts to return it must use that provider.
+        /// A failed call does not guarantee that no work was performed, so the caller must
+        /// not assume that repeating it is harmless.
         /// </para>
         /// <para>
-        /// Successful release does not by itself prove that the agent terminated or that
+        /// Successfully returning an agent does not by itself prove that it terminated or that
         /// external resources, including deployed files, are no longer in use. Before
         /// removing resources used by an agent, the responsible provider must establish
         /// that the agent no longer needs them. This applies to all provider types.
         /// </para>
         /// </remarks>
-        void ReleaseAgent(ITestAgent agent);
+        void ReturnAgent(ITestAgent agent);
     }
 }
