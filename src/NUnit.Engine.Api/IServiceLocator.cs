@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License - see LICENSE.txt
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace NUnit.Engine
@@ -25,6 +26,14 @@ namespace NUnit.Engine
         /// type of service if it is available, otherwise return false;
         /// </summary>
         bool TryGetService<T>([NotNullWhen(true)] out T? service)
+            where T : class;
+
+        /// <summary>
+        /// Retrieves all registered services of type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The reference type of services to retrieve.</typeparam>
+        /// <returns>An enumeration of registered services of type <typeparamref name="T"/>; empty if no services are registered.</returns>
+        IEnumerable<T> GetServices<T>()
             where T : class;
     }
 }
