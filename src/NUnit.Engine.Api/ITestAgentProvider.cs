@@ -25,6 +25,14 @@ namespace NUnit.Engine.Services
     public interface ITestAgentProvider : ITestAgentInfo
     {
         /// <summary>
+        /// Occurs when a test agent exits unexpectedly. Depending on the type of provider,
+        /// this may mean that the process hosting the agent has exited or that the provider
+        /// has lost contact with the agent, e.g. through loss of a remote connection. Each
+        /// provider should document the conditions under which it raises this event.
+        /// </summary>
+        event AgentExitedEventHandler AgentExited;
+
+        /// <summary>
         /// Determines whether the provider can currently supply an agent suitable
         /// for running the provided test package.
         /// </summary>
