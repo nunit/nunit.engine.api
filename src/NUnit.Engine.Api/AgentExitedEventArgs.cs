@@ -37,8 +37,8 @@ namespace NUnit.Engine
         public ITestAgent Agent { get; }
 
         /// <summary>
-        /// Gets an optional message provided by the agent on termination. Usually,
-        /// this will give the reason for the agent exiting.
+        /// Gets an optional diagnostic supplied by the provider. This may include
+        /// a message received from the agent or describe why contact was lost.
         /// </summary>
         public string? Message { get; }
 
