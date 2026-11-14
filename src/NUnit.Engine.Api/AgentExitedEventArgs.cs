@@ -21,7 +21,7 @@ namespace NUnit.Engine
         /// Initializes a new instance of the <see cref="AgentExitedEventArgs"/> class.
         /// </summary>
         /// <param name="agent">The test agent that exited.</param>
-        /// <param name="message">An optional message provided by the agent on termination.</param>
+        /// <param name="message">An optional diagnostic supplied by the provider.</param>
         /// <param name="exitCode">An optional process exit code returned by the agent.</param>
         public AgentExitedEventArgs(ITestAgent agent, string? message = null, int? exitCode = null)
         {
